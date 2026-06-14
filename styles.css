@@ -251,32 +251,89 @@ h2 {
   font-weight: 900;
 }
 
-/* VEHICLES */
+/* DELIVERIES */
 
-.vehicles {
-  background: var(--dark-blue);
-  color: white;
-}
-
-.vehicles h2,
-.vehicles .section-label {
-  color: white;
-}
-
-.vehicle-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 14px;
-  margin-top: 28px;
-}
-
-.vehicle-grid span {
-  background: rgba(255, 255, 255, 0.1);
-  padding: 18px;
-  border-radius: 12px;
+.deliveries {
   text-align: center;
-  font-weight: 700;
 }
+
+.slider-container {
+  position: relative;
+  max-width: 900px;
+  margin: 35px auto 0;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 18px 45px rgba(0,0,0,0.16);
+}
+
+.slider {
+  position: relative;
+  height: 520px;
+}
+
+.slide {
+  display: none;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.slide.active {
+  display: block;
+}
+
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  border: none;
+  background: rgba(255,255,255,0.85);
+  color: var(--dark-blue);
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.slider-btn:hover {
+  background: white;
+}
+
+.prev {
+  left: 18px;
+}
+
+.next {
+  right: 18px;
+}
+
+.slider-dots {
+  margin-top: 18px;
+}
+
+.dot {
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  margin: 0 6px;
+  background: #cbd5e1;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.dot.active {
+  background: var(--blue);
+}
+
+@media (max-width: 600px) {
+  .slider {
+    height: 320px;
+  }
+}
+
+
 
 /* REVIEWS */
 
