@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
+
 <body>
   <header class="hero">
     <nav class="nav">
@@ -87,19 +88,20 @@
       </div>
     </section>
 
-    <section class="vehicles section">
-      <p class="section-label">Popular Imports</p>
-      <h2>Japanese Vehicles We Source</h2>
-      <div class="vehicle-grid">
-        <span>Toyota Raize</span>
-        <span>Honda Vezel</span>
-        <span>Suzuki Wagon R</span>
-        <span>Toyota Yaris Cross</span>
-        <span>Daihatsu Mira ES</span>
-        <span>Nissan Dayz</span>
-        <span>Toyota Roomy</span>
-        <span>Toyota Yaris</span>
+
+    <section class="section deliveries">
+      <p class="section-label">Our Deliveries</p>
+      <h2>Recent Customer Deliveries</h2>
+
+      <div class="slider-container">
+        <button class="slider-btn prev" onclick="changeSlide(-1)">&#10094;</button>
+
+        <div class="slider" id="deliverySlider"></div>
+
+        <button class="slider-btn next" onclick="changeSlide(1)">&#10095;</button>
       </div>
+
+      <div class="slider-dots" id="sliderDots"></div>
     </section>
 
     <section class="reviews section" id="reviews">
@@ -155,5 +157,66 @@
       <a href="https://maps.app.goo.gl/8HpNxYPrAZSMTVWB9" target="_blank" rel="noopener">Google Maps</a>
     </p>
   </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const photos = [];
+
+        for (let i = 1; i <= 8; i++) {
+            photos.push(`d${i}.jpg`);
+        }
+
+        let currentSlide = 0;
+
+        const slider = document.getElementById("deliverySlider");
+        const dotsContainer = document.getElementById("sliderDots");
+
+        photos.forEach((photo, index) => {
+
+            const img = document.createElement("img");
+            img.src = `assets/deliveries/${photo}`;
+            img.alt = `Delivery ${index + 1}`;
+            img.className = index === 0 ? "slide active" : "slide";
+
+            slider.appendChild(img);
+
+            const dot = document.createElement("span");
+            dot.className = index === 0 ? "dot active" : "dot";
+
+            dot.addEventListener("click", () => {
+                showSlide(index);
+            });
+
+            dotsContainer.appendChild(dot);
+        });
+
+        const slides = document.querySelectorAll(".slide");
+        const dots = document.querySelectorAll(".dot");
+
+        function showSlide(index) {
+
+            slides[currentSlide].classList.remove("active");
+            dots[currentSlide].classList.remove("active");
+
+            currentSlide = (index + slides.length) % slides.length;
+
+            slides[currentSlide].classList.add("active");
+            dots[currentSlide].classList.add("active");
+        }
+
+        window.changeSlide = function(direction) {
+            showSlide(currentSlide + direction);
+        };
+
+        setInterval(() => {
+            showSlide(currentSlide + 1);
+        }, 4000);
+
+    });
+  </script>
+
 </body>
+
+
 </html>
